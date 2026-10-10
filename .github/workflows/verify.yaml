@@ -1,0 +1,44 @@
+name: verify
+on: [push, workflow_dispatch]
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+
+      - name: Install tools
+        shell: bash
+        run: sudo apt-get update && sudo apt-get install -y iverilog yosys verilator make
+
+      - name: Self-checking testbench
+        shell: bash
+        run: make sim
+
+      - name: Readable demo timeline
+        shell: bash
+        run: make demo
+
+      - name: Lint (Verilator -Wall)
+        shell: bash
+        run: make lint
+
+      - name: Bug-injection (mutation) check
+        shell: bash
+        run: make mutate
+
+      - name: Yosys synthesis (generic + Sky130 mapped)
+        shell: bash
+        run: make synth
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: verification-logs
+          path: |
+            verification/sim_log.txt
+            verification/demo_log.txt
+            verification/mutation_results.txt
+            synthesis/stat_generic.txt
+            synthesis/stat_sky130.txt
