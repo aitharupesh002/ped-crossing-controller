@@ -1,0 +1,20 @@
+T01 reset values and start-up all-red phase
+T02 idle GREEN with no requests
+T03 normal pedestrian cycle
+T04 request early in GREEN respects minimum green
+T05 held button = one request
+T06 one-clock pulses at different phases
+T07 emergency holds GREEN, pedestrian request is kept
+T08 simultaneous pedestrian + emergency request
+T09 emergency in each phase
+T10 reset during every phase
+T11 illegal state recovery
+T12 presses during WALK and CLEAR are ignored
+T13 second press swept over every clock of the cycle
+T14 emergency pulse swept over the cycle
+T15 one-clock emergency pulse
+------------------------------------------------------------
+checks executed : 400038
+errors          : 0
+RESULT: ALL TESTS PASSED
+verification/tb_ped_crossing_ctrl.v:267: $finish called at 565860000 (1ps)

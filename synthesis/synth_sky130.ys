@@ -1,0 +1,14 @@
+# Yosys synthesis mapped to the SkyWater sky130_fd_sc_hd standard-cell library
+# (typical corner tt_025C_1v80). Run from project root: yosys -l synthesis/yosys_sky130_log.txt synthesis/synth_sky130.ys
+read_liberty -lib synthesis/lib/sky130_fd_sc_hd__tt_025C_1v80_filtered.lib
+read_verilog src/ped_crossing_ctrl.v
+hierarchy -check -top ped_crossing_ctrl
+synth -top ped_crossing_ctrl -flatten
+check -assert
+dfflegalize -cell $_DFF_PN0_ 01
+dfflibmap -liberty synthesis/lib/sky130_fd_sc_hd__tt_025C_1v80_filtered.lib
+abc -liberty synthesis/lib/sky130_fd_sc_hd__tt_025C_1v80_filtered.lib -D 100000
+opt_clean
+check -assert
+tee -o synthesis/stat_sky130.txt stat -liberty synthesis/lib/sky130_fd_sc_hd__tt_025C_1v80_filtered.lib
+write_verilog -noattr synthesis/ped_crossing_ctrl_sky130_netlist.v
