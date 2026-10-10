@@ -1,0 +1,16 @@
+m01_no_minimum_green: caught
+m02_emergency_ignored_green: caught
+m03_walk_not_cut_short: caught
+m04_allred1_ignores_emerg: caught
+m05_level_not_edge: caught
+m06_press_in_walk_latched: caught
+m07_pending_never_cleared: caught
+m08_yellow_one_tick_short: caught
+m09_bad_illegal_recovery: caught
+m10_clearance_skipped: caught
+m11_walk_during_yellow: caught
+m12_reset_state_is_green: caught
+m13_pending_survives_reset: caught
+m14_emergency_unsynchronised: caught
+m15_prescaler_not_restarted: caught
+m16_green_without_request: caught

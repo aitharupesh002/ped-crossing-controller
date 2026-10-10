@@ -1,0 +1,34 @@
+
+>>> RESET: expect ALLRED2 (all red, ped STOP)
+clock    1 | now ALLRED2  | previous state lasted   1 clocks | veh R1 Y0 G0 | ped WALK0 CLEAR0 STOP1 | WAIT0 EMERG0
+clock   11 | now GREEN    | previous state lasted  10 clocks | veh R0 Y0 G1 | ped WALK0 CLEAR0 STOP1 | WAIT0 EMERG0
+
+>>> PRESSES BUTTON after minimum green: expect WAIT=1, then Y, AR1, WALK(WAIT clears), CLEAR, AR2, GREEN
+clock   48 | now YELLOW   | previous state lasted  37 clocks | veh R0 Y1 G0 | ped WALK0 CLEAR0 STOP1 | WAIT1 EMERG0
+clock   56 | now ALLRED1  | previous state lasted   8 clocks | veh R1 Y0 G0 | ped WALK0 CLEAR0 STOP1 | WAIT1 EMERG0
+clock   68 | now WALK     | previous state lasted  12 clocks | veh R1 Y0 G0 | ped WALK1 CLEAR0 STOP0 | WAIT0 EMERG0
+clock   84 | now CLEAR    | previous state lasted  16 clocks | veh R1 Y0 G0 | ped WALK0 CLEAR1 STOP0 | WAIT0 EMERG0
+clock  104 | now ALLRED2  | previous state lasted  20 clocks | veh R1 Y0 G0 | ped WALK0 CLEAR0 STOP1 | WAIT0 EMERG0
+clock  112 | now GREEN    | previous state lasted   8 clocks | veh R0 Y0 G1 | ped WALK0 CLEAR0 STOP1 | WAIT0 EMERG0
+
+>>> EMERGENCY HELD + pedestrian button: expect GREEN is HELD, WAIT stays 1
+clock  221 | GREEN held, no state change: state=GREEN WAIT=1 EMERG=1
+
+>>> EMERGENCY RELEASED: expect pending request now served (YELLOW ...)
+clock  225 | now YELLOW   | previous state lasted 113 clocks | veh R0 Y1 G0 | ped WALK0 CLEAR0 STOP1 | WAIT1 EMERG0
+clock  233 | now ALLRED1  | previous state lasted   8 clocks | veh R1 Y0 G0 | ped WALK0 CLEAR0 STOP1 | WAIT1 EMERG0
+clock  245 | now WALK     | previous state lasted  12 clocks | veh R1 Y0 G0 | ped WALK1 CLEAR0 STOP0 | WAIT0 EMERG0
+clock  261 | now CLEAR    | previous state lasted  16 clocks | veh R1 Y0 G0 | ped WALK0 CLEAR1 STOP0 | WAIT0 EMERG0
+clock  281 | now ALLRED2  | previous state lasted  20 clocks | veh R1 Y0 G0 | ped WALK0 CLEAR0 STOP1 | WAIT0 EMERG0
+clock  289 | now GREEN    | previous state lasted   8 clocks | veh R0 Y0 G1 | ped WALK0 CLEAR0 STOP1 | WAIT0 EMERG0
+
+>>> EMERGENCY DURING WALK: expect WALK ends early -> CLEAR (full 20 clocks) -> ALLRED2 -> GREEN
+clock  327 | now YELLOW   | previous state lasted  38 clocks | veh R0 Y1 G0 | ped WALK0 CLEAR0 STOP1 | WAIT1 EMERG0
+clock  335 | now ALLRED1  | previous state lasted   8 clocks | veh R1 Y0 G0 | ped WALK0 CLEAR0 STOP1 | WAIT1 EMERG0
+clock  347 | now WALK     | previous state lasted  12 clocks | veh R1 Y0 G0 | ped WALK1 CLEAR0 STOP0 | WAIT0 EMERG0
+clock  354 | now CLEAR    | previous state lasted   7 clocks | veh R1 Y0 G0 | ped WALK0 CLEAR1 STOP0 | WAIT0 EMERG1
+clock  374 | now ALLRED2  | previous state lasted  20 clocks | veh R1 Y0 G0 | ped WALK0 CLEAR0 STOP1 | WAIT0 EMERG1
+clock  382 | now GREEN    | previous state lasted   8 clocks | veh R0 Y0 G1 | ped WALK0 CLEAR0 STOP1 | WAIT0 EMERG1
+
+Demo finished.
+verification/tb_demo.v:58: $finish called at 4320000 (1ps)
