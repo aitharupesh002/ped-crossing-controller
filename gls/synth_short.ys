@@ -1,0 +1,9 @@
+# Synthesise the SAME RTL with the short simulation timing parameters, for gate-level simulation.
+read_verilog src/ped_crossing_ctrl.v
+chparam -set CLK_DIV 4 -set PRE_W 3 -set T_GREEN 5 -set T_YELLOW 2 -set T_ALLRED1 3 -set T_WALK 4 -set T_CLEAR 5 -set T_ALLRED2 2 ped_crossing_ctrl
+hierarchy -check -top ped_crossing_ctrl
+proc; opt_clean
+synth -top ped_crossing_ctrl -flatten
+check -assert
+tee -o gls/stat_short.txt stat
+write_verilog -noattr gls/ped_short_netlist.v
