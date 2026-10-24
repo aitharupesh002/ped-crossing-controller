@@ -63,6 +63,16 @@ cd test && pip install -r requirements.txt && make     # cocotb tests
 
 The standalone Yosys area (1796.7 µm²) is a pre-layout sum of cell areas. Post-layout results come from the GitHub Actions `gds` run; full details and caveats are in [`docs/RESULTS.md`](docs/RESULTS.md).
 
+## Gate-level simulation and waveforms
+
+The same RTL was synthesised with short simulation timing and run against the RTL with identical stimulus: 432 clock samples compared, 0 mismatches (`gls/rtl_vs_gls_log.txt`). This GLS uses Yosys generic gates with zero delay, not Sky130 cells with timing.
+
+| RTL waveform | GLS waveform |
+|---|---|
+| ![RTL](gls/images/RTL_waveform.png) | ![GLS](gls/images/GLS_waveform.png) |
+
+Waveforms are drawn by `gls/make_waveforms.py` from the simulation VCD (not GTKWave screenshots). Details: `gls/README.md`.
+
 ## Limitations
 
 Educational controller: no independent conflict monitor, no lamp-failure detection, no flashing-mode fallback, no certified timing values. Input push button assumed debounced; pulses shorter than one clock may be missed; reset release assumed synchronous to `clk`. Simulation covers the tested scenarios, not all input sequences (formal verification would be the next step).
