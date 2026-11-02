@@ -10,9 +10,9 @@ RTL design, verification, synthesis and RTL-to-GDS implementation (Sky130) of a 
 
 A recorded explanation of this project.
 
-<video src="https://github.com/aitharupesh002/ped-crossing-controller/raw/main/Project_Explanation_Video.mp4" controls width="360"></video>
+<video src="https://github.com/aitharupesh002/ped-crossing-controller/raw/main/Project%20video.mp4" controls width="360"></video>
 
-If the player does not load, open [Project_Explanation_Video.mp4](Project_Explanation_Video.mp4).
+If the player does not load, open [Project video.mp4](Project%20video.mp4).
 
 ## Problem and solution
 
