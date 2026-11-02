@@ -6,6 +6,14 @@ RTL design, verification, synthesis and RTL-to-GDS implementation (Sky130) of a 
 
 > **Educational design.** Not suitable for real traffic infrastructure. Simulation does not prove physical correctness.
 
+## Project Explanation Video
+
+A recorded explanation of this project.
+
+<video src="https://github.com/aitharupesh002/ped-crossing-controller/raw/main/Project_Explanation_Video.mp4" controls width="360"></video>
+
+If the player does not load, open [Project_Explanation_Video.mp4](Project_Explanation_Video.mp4).
+
 ## Problem and solution
 
 At a mid-block crossing, a fixed-timer signal stops vehicles even when nobody is waiting, while no signal is unsafe for pedestrians. This chip stops traffic **only when a pedestrian asks**, after vehicles have had a **minimum green**; a pedestrian request is **latched and acknowledged** (`ped_wait`); an **emergency request never gives an instant green** — it holds green or ends WALK early, always through the safe all-red / clearance sequence. Vehicle and pedestrian permissions can never overlap.
